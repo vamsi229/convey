@@ -1,15 +1,20 @@
-import React, {useContext} from 'react'
+import React, {useContext, useState} from 'react'
 import { useLocation, Link, useNavigate } from 'react-router-dom';
 import userContext from '../context/user/UserContext';
 import { jwtDecode } from "jwt-decode";
 
 export default function NavBar() {
     const uContext = useContext(userContext)
-    const {user, setUser} = uContext
+    const {user} = uContext
+    const [userName, setUserName] = useState([])
     const onClickProfile = ()=>{
+      if (user.userName){
+        setUserName(user.userName)
+      }
+      else{
     const decoded = jwtDecode(localStorage.getItem('token'));
     console.log("decodeddd", decoded)
-    setUser({userName: decoded.user_name})}
+    setUserName(decoded.user_name)}}
     let location = useLocation();
     let history = useNavigate();
     const handleLogout = ()=>{
@@ -36,10 +41,11 @@ export default function NavBar() {
       {!localStorage.getItem('token')?"":
       <div className="dropdown">
       <i className="fa-solid fa-user mx-4 dropdown-toggle" data-bs-toggle="dropdown" onClick={onClickProfile} aria-expanded="false"></i>
-      <ul className="dropdown-menu">
+      <ul className="dropdown-menu dropdown-menu-lg-end">
       <div className="profileDetailsWrapper"><span className="ml-4 mr-10 pt-1 mx-1">
-        <label className=" cursor-pointer"><div className=" user-text word-break">{user.userName}
+        <label className=" cursor-pointer"><div className=" user-text word-break">{userName}
         </div></label></span></div>
+        {/* <li className="dropdown-item" onClick={handleLogout} role="button">{userName}</li> */}
       <Link className="dropdown-item" to="/userProfile" role="button">Profile</Link>
       <li className="dropdown-item" onClick={handleLogout} role="button">Logout</li>
       </ul>

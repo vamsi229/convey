@@ -29,9 +29,10 @@ export default function Login(props) {
   }
   return (
     <>
+    <h3 class="my-1">Please Enter your credentials to continue</h3>
     <form onSubmit={handleSubmit}>
   <div className="mb-3">
-    <label htmlFor="email" className="form-label">Email address</label>
+    <label htmlFor="email" className="form-label my-2">Email address</label>
     <input type="email" className="form-control" value={credentials.email} onChange={onChange} id="email" name="email" aria-describedby="emailHelp" required/>
   </div>
   <div className="mb-3">
