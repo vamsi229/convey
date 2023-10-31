@@ -3,13 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import userContext from '../context/user/UserContext';
 
 
-export default function UserProfile(props) {
-  const [file, setFile] = useState();
-    function handleChange(e) {
-        console.log(e.target.files);
-        setFile(URL.createObjectURL(e.target.files[0]));
-        console.log(file)
-    }
+export default function UserProfile() {
     
   const [edit, setEdit] = useState(1)
   const profileURL = "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.socialpilot.co%2Ffacebook-marketing%2Ffacebook-logo&psig=AOvVaw3BT0eiThSD9KPlk8xVeq1s&ust=1698665552378000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCOD7sa-Um4IDFQAAAAAdAAAAABAH"
@@ -57,12 +51,6 @@ export default function UserProfile(props) {
         </div></div><button type="button" className="btn btn-primary save-button submit-or-cancel-btn ml-2 my-4" onClick={editPage}>Edit</button></form></div></div>
     : <form onSubmit={handleClick}>
     <div className="row">
-    <div className="col-xl-3 col-sm-6 col-lg-3 inputType">
-            <h2>Add Image:</h2>
-            <input type="file" onChange={handleChange} />
-            <img src={file} />
- 
-        </div>
        <div className="col-xl-3 col-sm-6 col-lg-3 inputType">
          <label htmlFor="inputName" className="form-label input-form-label">User Name<span className="asterisk">*</span>
          </label><input type="text" className="form-control" placeholder="Enter name" name="userName" value = {user.userName} onChange={onChange} maxLength={25}  required/></div>

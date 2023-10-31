@@ -10,6 +10,7 @@ import Alert from './components/Alert';
 import UserProfile from './components/UserProfile';
 import UserState from './context/user/UserState';
 import EditProfile from './components/editUser';
+import ChangePassword from './components/ChangePassword';
 
 
 function App() {
@@ -49,6 +50,9 @@ function App() {
             />
             <Route exact path="/editProfile"
               element={<EditProfile showAlert={showAlert}/>}
+            />
+            <Route exact path="/changePassword"
+              element={<ChangePassword showAlert={showAlert}/>}
             />
           </Routes>
           </div> 

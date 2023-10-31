@@ -11,7 +11,6 @@ const UserState = (props)=>{
         {method:"GET", headers:{"Content-Type":"application/json", "token": localStorage.getItem('token')}})
             .then((res) => res.json())
             .then((d) => setUser(d.data))
-        
         }
     
     const editUser =  async (userName, phoneNumber) => {

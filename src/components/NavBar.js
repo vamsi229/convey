@@ -46,13 +46,14 @@ export default function NavBar() {
         <label className=" cursor-pointer"><div className=" user-text word-break">{userName}
         </div></label></span></div>
         {/* <li className="dropdown-item" onClick={handleLogout} role="button">{userName}</li> */}
-      <Link className="dropdown-item" to="/userProfile" role="button">Profile</Link>
+      <Link className={`dropdown-item ${location.pathname==="/userProfile"? "active": ""}`} to="/userProfile" role="button">Profile</Link>
+      <Link className={`dropdown-item ${location.pathname==="/changePassword"? "active": ""}`} to="/changePassword" role="button">Change Password</Link>
       <li className="dropdown-item" onClick={handleLogout} role="button">Logout</li>
       </ul>
     </div>
         }
       {!localStorage.getItem('token')?<form className="d-flex"><Link className="btn btn-primary mx-1" to="/login" role="button">Login</Link>
-      <Link className="btn btn-primary mx-1" to="/signup" role="button">Signup</Link>
+      <Link className="btn btn-secondary mx-1" to="/signup" role="button">Signup</Link>
       </form>:""}
     </div>
   </div>

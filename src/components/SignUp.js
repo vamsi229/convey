@@ -28,9 +28,10 @@ export default function SignUp(props) {
   return (
     <>
     <div className="container">
+    <h3 class="my-1">Please Enter your You details to Sign Up</h3>
     <form onSubmit={handleSubmit}>
     <div className="mb-3">
-    <label htmlFor="name" className="form-label">User Name</label>
+    <label htmlFor="name" className="form-label my-2">User Name</label>
     <input type="text" className="form-control" value = {details.userName} onChange={onChangehandled} id="userName" name="userName" required/>
   </div>
   <div className="mb-3">
