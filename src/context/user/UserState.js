@@ -13,13 +13,15 @@ const UserState = (props)=>{
             .then((d) => setUser(d.data))
         }
     
-    const editUser =  async (userName, phoneNumber) => {
-        console.log(userName, phoneNumber)
+    const editUser =  async (userName, phoneNumber, userImage) => {
+        console.log(userName, phoneNumber, userImage)
+        // const formData = new FormData()
+        // formData.append("userImage", userImage)
+        // formData.append("userName", userName)
         const response = await fetch("http://localhost:8808/convey/update-user-details", {
             method: 'PUT',
-            headers: {
-              'Content-Type': 'application/json', "token": localStorage.getItem('token')},
-            body: JSON.stringify({userName, phoneNumber})
+            headers:{"Content-Type":"application/json", "token": localStorage.getItem('token')},
+            body: JSON.stringify({"userImage": userImage, "userName": userName, "phoneNumber": phoneNumber})
           });
           const json = await response.json()
         if(json.status){
