@@ -7,7 +7,7 @@ const UserState = (props)=>{
     // setUser({email:"vamsi", userName:"Grandhi"})
 
     const fetchInfo = () => {
-        return fetch("http://localhost:8808/convey/get-user-details",
+        return fetch(`${window.base_url}/get-user-details`,
         {method:"GET", headers:{"Content-Type":"application/json", "token": localStorage.getItem('token')}})
             .then((res) => res.json())
             .then((d) => setUser(d.data))
@@ -18,7 +18,7 @@ const UserState = (props)=>{
         // const formData = new FormData()
         // formData.append("userImage", userImage)
         // formData.append("userName", userName)
-        const response = await fetch("http://localhost:8808/convey/update-user-details", {
+        const response = await fetch(`${window.base_url}/update-user-details`, {
             method: 'PUT',
             headers:{"Content-Type":"application/json", "token": localStorage.getItem('token')},
             body: JSON.stringify({"userImage": userImage, "userName": userName, "phoneNumber": phoneNumber})

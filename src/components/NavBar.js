@@ -35,6 +35,9 @@ export default function NavBar() {
         <li className="nav-item">
           <Link className={`nav-link ${location.pathname==="/about"? "active": ""}`} to="/about">About</Link>
         </li>
+        <li className="nav-item">
+          <Link className={`nav-link ${location.pathname==="/products"? "active": ""}`} to="/products">Products</Link>
+        </li>
        
       </ul>
       
