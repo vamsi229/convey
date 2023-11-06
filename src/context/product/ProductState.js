@@ -6,19 +6,26 @@ const ProductState = (props)=>{
     const productInitial = {}
     const [product, setProduct] = useState(productInitial)
 
-    const fetchProducts = () => {
-        return fetch(`${window.base_url}/get-user-details`,
-        {method:"GET", headers:{"Content-Type":"application/json", "token": localStorage.getItem('token')}})
-            .then((res) => res.json())
-            .then((d) => setProduct(d.data))
+    const fetchProducts = async () => {
+        const response = await fetch(`${window.base_url}/products/list-products`,
+        {method:"POST", headers:{"Content-Type":"application/json", "token": localStorage.getItem('token')},
+        body: JSON.stringify({})})
+        const json = await response.json()
+        if(json.status){
+            props.showAlert(json.message, "success")
         }
+        else{
+            props.showAlert(json.message, "danger")
+        }
+    return json    
+    }
     
-    const addProduct = async () => {
+    const addProduct = async (productImage) => {
         console.log(product)
         const response = await fetch(`${window.base_url}/products/add-product`, {
             method: 'POST',
             headers: {"Content-Type":"application/json", "token": localStorage.getItem('token')},
-            body: JSON.stringify({"image": product.image, "name": product.name, "description": product.description,
+            body: JSON.stringify({"image": productImage, "name": product.name, "description": product.description,
             "ram": product.ram, "storage": product.storage, "operatingSystem": product.operatingSystem, "price": product.price})})
         const json = await response.json()
 
@@ -30,12 +37,13 @@ const ProductState = (props)=>{
         }
     }
     
-    const editProduct = async (product_id) => {
-        const response = await fetch(`${window.base_url}/edit-product`, {
+    const updateProduct = async (product_id, productImage) => {
+        const response = await fetch(`${window.base_url}/products/edit-product`, {
             method: 'PUT',
             headers: {"Content-Type":"application/json", "token": localStorage.getItem('token')},
-            body: JSON.stringify({"id": product_id,"image": product.image, "name": product.name, "description": product.description,
-            "ram": product.ram, "storage": product.storage, "operatingSystem": product.operatingSystem})})
+            body: JSON.stringify({"image": productImage, "name": product.name, "description": product.description,
+            "ram": product.ram, "storage": product.storage, "operatingSystem": product.operatingSystem, "price": product.price,
+        "productId": product_id})})
         
         const json = await response.json()
         
@@ -47,12 +55,23 @@ const ProductState = (props)=>{
         }
     }
 
-    const deleteProduct = async (productId) =>{
-        const response = await fetch(`${window.base_url}`)
+    const deleteProduct = async (product_id) =>{
+        const response = await fetch(`${window.base_url}/products/delete-product?productId=${product_id}`,{
+            method: 'DELETE',
+            headers: {"Content-Type":"application/json", "token": localStorage.getItem('token')},
+            // body: JSON.stringify({"productId": product_id})
+        })
+        const json = await response.json()
+        if(json.status){
+            props.showAlert(json.message, "success")
+        }
+        else{
+            props.showAlert(json.message, "danger")
+        }
     }
 
     return (
-        <ProductContext.Provider value={{product, setProduct, fetchProducts, addProduct, editProduct, deleteProduct}}>
+        <ProductContext.Provider value={{product, setProduct, fetchProducts, addProduct, updateProduct, deleteProduct}}>
             {props.children}
         </ProductContext.Provider>
     )

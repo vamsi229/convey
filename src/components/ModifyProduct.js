@@ -6,7 +6,6 @@ export default function ModifyProduct(props) {
     const history = useNavigate();
     const pContext = useContext(productContext)
     const {product, setProduct, addProduct, updateProduct, deleteProduct} = pContext
-    
 
     const saveProduct = ()=>{
       history("/products")
@@ -14,12 +13,19 @@ export default function ModifyProduct(props) {
 
     const handleClick = (e) => {
       e.preventDefault()
-      setProduct({image: productImage.myFile})
+      console.log("bb", product)
+      console.log("before", productImage.myFile, productImage.myFile.length )
+      var image = productImage.myFile
+      if (productImage.myFile.length == 0){
+        image = product.image
+        console.log("why bro", product.image)
+      console.log(productImage, "image", image)}
+      // setProduct({image: productImage.myFile})
       if(props.option === 'edit'){
-        updateProduct(product.id)
+        updateProduct(product.productId, image)
       }
       else{
-        addProduct()
+        addProduct(image)
       }
       history("/products")
     }
@@ -31,6 +37,7 @@ export default function ModifyProduct(props) {
     myFile: "",
   });
   const handleFileUpload = async (e) => {
+
     const file = e.target.files[0];
     const base64 = await convertToBase64(file);
     console.log(base64)
@@ -50,9 +57,14 @@ export default function ModifyProduct(props) {
     });
   };
 
+  const onEditClick = ()=>{
+    console.log(product, "here")
+    console.log(props)
+    history("/editProduct")
+  }
 
   return (
-   <>{props.option === 'fetch'?
+   <>{props.option === 'details'?
     <div className="card-body p-4">
       <h2> Product</h2>
         <label className="font-weight-600 font-17 my-2">Product Photo</label>
@@ -78,21 +90,36 @@ export default function ModifyProduct(props) {
         <label htmlFor="inputName" className="form-label input-form-label">Operating System</label>
         <div className="font-17 font-weight-bold">{product.operatingSystem}</div>
         </div></div>
-        <button type="button" className="btn btn-primary save-button submit-or-cancel-btn ml-2 my-4" onClick={saveProduct}>
-          Save</button></form></div></div>
+        <button type="button" className="btn btn-primary save-button submit-or-cancel-btn ml-2 my-4" onClick={onEditClick}>
+          Edit</button></form></div></div>
     : 
    <>
    <form onSubmit={handleClick}>
     <div className="row">
+    <img alt="preview" className="profileImg" src={productImage.myFile? productImage.myFile: product.image} width="100rem" length ="100rem"/>
     <label htmlFor="inputName" className="form-label input-form-label">Product Image<span className="asterisk">*</span></label>
+    {props.option === "edit" ?
     <input
+          alt="preview"
           type="file"
           label="Image"
           name="myFile"
           accept=".jpeg, .png, .jpg"
           onChange={(e) => handleFileUpload(e)}
-          required
-        />
+          filename={product.image}
+          
+        />:
+        <input
+        alt="preview"
+        type="file"
+        label="Image"
+        name="myFile"
+        accept=".jpeg, .png, .jpg"
+        onChange={(e) => handleFileUpload(e)}
+        filename={product.image}
+        required
+        
+      />}
         <br/><br/><br/>
        <div className="col-xl-3 col-sm-6 col-lg-3 inputType">
          <label htmlFor="inputName" className="form-label input-form-label">Product Name<span className="asterisk">*</span>

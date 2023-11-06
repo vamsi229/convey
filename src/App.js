@@ -44,10 +44,13 @@ function App() {
               element={<Home showAlert={showAlert}/>}
             /> 
             <Route exact path="/editProduct"
-              element={<ModifyProduct showAlert={showAlert} option={false}/>}
+              element={<ModifyProduct showAlert={showAlert} option={"edit"}/>}
             />
             <Route exact path="/addProduct"
-              element={<ModifyProduct showAlert={showAlert} option={true}/>}
+              element={<ModifyProduct showAlert={showAlert} option={"add"}/>}
+            /> 
+            <Route exact path="/productDetails"
+              element={<ModifyProduct showAlert={showAlert} option={"details"}/>}
             /> 
             <Route exact path="/products"
               element={<Product showAlert={showAlert}/>}
