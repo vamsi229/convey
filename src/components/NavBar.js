@@ -13,7 +13,6 @@ export default function NavBar() {
       }
       else{
     const decoded = jwtDecode(localStorage.getItem('token'));
-    console.log("decodeddd", decoded)
     setUserName(decoded.user_name)}}
     let location = useLocation();
     let history = useNavigate();

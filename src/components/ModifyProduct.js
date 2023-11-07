@@ -13,14 +13,11 @@ export default function ModifyProduct(props) {
 
     const handleClick = (e) => {
       e.preventDefault()
-      console.log("bb", product)
-      console.log("before", productImage.myFile, productImage.myFile.length )
       var image = productImage.myFile
       if (productImage.myFile.length == 0){
         image = product.image
-        console.log("why bro", product.image)
-      console.log(productImage, "image", image)}
-      // setProduct({image: productImage.myFile})
+        }
+     
       if(props.option === 'edit'){
         updateProduct(product.productId, image)
       }
@@ -40,7 +37,6 @@ export default function ModifyProduct(props) {
 
     const file = e.target.files[0];
     const base64 = await convertToBase64(file);
-    console.log(base64)
     setProductImage({ ...productImage, myFile: base64 });
   };
 
@@ -58,8 +54,6 @@ export default function ModifyProduct(props) {
   };
 
   const onEditClick = ()=>{
-    console.log(product, "here")
-    console.log(props)
     history("/editProduct")
   }
 
@@ -123,13 +117,15 @@ export default function ModifyProduct(props) {
         <br/><br/><br/>
        <div className="col-xl-3 col-sm-6 col-lg-3 inputType">
          <label htmlFor="inputName" className="form-label input-form-label">Product Name<span className="asterisk">*</span>
-         </label><input type="text" className="form-control" placeholder="Enter name" name="name" value = {product.name} onChange={onChange} maxLength={25}  required/></div>
+         </label><input type="text" className="form-control" placeholder="Enter name" name="name" value = {product.name} 
+         onChange={onChange} maxLength={25}  required/></div>
          <div className="col-xl-3 col-sm-6 col-lg-3 inputType">
          <label htmlFor="inputName" className="form-label input-form-label">Description<span className="asterisk">*</span>
-         </label><input type="text" className="form-control" placeholder="Enter Description" value = {product.description} onChange={onChange} name="description" required/></div>
+         </label><input type="text" className="form-control" placeholder="Enter Description" value = {product.description}
+          onChange={onChange} name="description" required/></div>
        <div className="col-xl-3 col-sm-6 col-lg-3 inputType">
-         <label htmlFor="inputName" className="form-label input-form-label">Price
-         </label><input type="number" className="form-control" placeholder="Enter Price" value = {product.price} min={100} max={1000000} 
+         <label htmlFor="inputName" className="form-label input-form-label">Price<span className="asterisk">*</span>
+         </label><input type="number" className="form-control" placeholder="Enter Price" value = {product.price} min={100} max={1000000} required 
          onChange={onChange} name="price"/>
        </div>
        <div className="col-xl-3 col-sm-6 col-lg-3 inputType">
@@ -150,7 +146,7 @@ export default function ModifyProduct(props) {
        </div>
     </div>
     <div className="ml-2 save-button"><button type="submit" className="btn btn-primary mr-3 submit-or-cancel-btn my-4">Save
-    </button><button className="btn btn-outline submit-or-cancel-btn my-4">Cancel</button></div>
+    </button><button className="btn btn-outline submit-or-cancel-btn my-4" onClick={() => {history("/products")}}>Cancel</button></div>
  </form> </>}
    </>
   )

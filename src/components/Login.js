@@ -10,9 +10,7 @@ export default function Login(props) {
         const response = await fetch("http://localhost:8808/convey/login",
         {method:"POST", headers:{"Content-Type":"application/json"}, 
         body: JSON.stringify({email: credentials.email, password: credentials.password})});
-        console.log(credentials.email, credentials.password)
         const json = await response.json();
-        console.log(json)
         if (json.status){
           localStorage.setItem('token', json.data.authToken)
           history("/")
@@ -29,7 +27,7 @@ export default function Login(props) {
   }
   return (
     <>
-    <h3 class="my-1">Please Enter your credentials to continue</h3>
+    <h3 className="my-1">Please Enter your credentials to continue</h3>
     <form onSubmit={handleSubmit}>
   <div className="mb-3">
     <label htmlFor="email" className="form-label my-2">Email address</label>

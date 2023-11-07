@@ -10,7 +10,6 @@ export default function UserProfile() {
       const uContext = useContext(userContext)
     const {user, setUser, fetchInfo, editUser} = uContext
     const history = useNavigate()
-    console.log("value", edit)
     useEffect(() => {
     fetchInfo(); 
     }, []);
@@ -36,7 +35,6 @@ export default function UserProfile() {
   const handleFileUpload = async (e) => {
     const file = e.target.files[0];
     const base64 = await convertToBase64(file);
-    console.log(base64)
     setPostImage({ ...postImage, myFile: base64 });
   };
 

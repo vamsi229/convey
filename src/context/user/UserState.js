@@ -14,10 +14,6 @@ const UserState = (props)=>{
         }
     
     const editUser =  async (userName, phoneNumber, userImage) => {
-        console.log(userName, phoneNumber, userImage)
-        // const formData = new FormData()
-        // formData.append("userImage", userImage)
-        // formData.append("userName", userName)
         const response = await fetch(`${window.base_url}/update-user-details`, {
             method: 'PUT',
             headers:{"Content-Type":"application/json", "token": localStorage.getItem('token')},

@@ -14,7 +14,8 @@ export default function Product() {
     setValues(await fetchProducts().then(result => result?.data))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }
-  useEffect(()=>{fetchData()},
+  useEffect(()=>{fetchData()
+  console.log("called")},
    []);
 
 
@@ -30,7 +31,7 @@ export default function Product() {
             <div className="row">
                 {values.map((element) => {
                     return <div className="col-md-4" key={element.productId}>
-                        <ProductItem title={element.name} description={element.description} 
+                        <ProductItem name={element.name} description={element.description} 
                         price={element.price} ram={element.ram} storage={element.storage} 
                         operatingSystem={element.operatingSystem} image={element.image} productId = {element.productId}
                         />

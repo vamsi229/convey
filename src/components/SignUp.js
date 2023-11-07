@@ -11,7 +11,6 @@ export default function SignUp(props) {
     body: JSON.stringify({email: details.email, password: details.password, 
       userName: details.userName, cPassword: details.cPassword})});
     const json = await response.json();
-    console.log(json)
     if(json.status){
       props.showAlert(json.message, "success")
       history('/about')
@@ -28,7 +27,7 @@ export default function SignUp(props) {
   return (
     <>
     <div className="container">
-    <h3 class="my-1">Please Enter your You details to Sign Up</h3>
+    <h3 className="my-1">Please Enter your You details to Sign Up</h3>
     <form onSubmit={handleSubmit}>
     <div className="mb-3">
     <label htmlFor="name" className="form-label my-2">User Name</label>

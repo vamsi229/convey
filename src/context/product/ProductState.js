@@ -21,7 +21,6 @@ const ProductState = (props)=>{
     }
     
     const addProduct = async (productImage) => {
-        console.log(product)
         const response = await fetch(`${window.base_url}/products/add-product`, {
             method: 'POST',
             headers: {"Content-Type":"application/json", "token": localStorage.getItem('token')},
