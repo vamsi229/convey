@@ -5,6 +5,9 @@ import { useNavigate } from 'react-router-dom';
 export default function ChangePassword(props) {
 
     const [pass, setPass] = useState({password: "", newPassword: "", confirmPassword: ""}) 
+    const [showPassword1, setShowPassword1] = useState(false);
+    const [showPassword2, setShowPassword2] = useState(false);
+    const [showPassword3, setShowPassword3] = useState(false);
     let history = useNavigate();
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -33,7 +36,11 @@ export default function ChangePassword(props) {
             <div className="col-xl-3 col-sm-6 col-lg-3 my-2">
                 <label htmlFor="existingPassword" className="form-label input-form-label">Current Password<span className="asterisk">*</span></label>
                 <div className="d-flex">
-                    <input type="password" className="form-control" placeholder="Enter current password" name="password" value={pass.password} onChange={onChange} />
+                    <input type={showPassword1 ? "text" : "password"} className="form-control" placeholder="Enter current password" name="password" value={pass.password} onChange={onChange} />
+                    <i class={showPassword1? "fa-solid fa-eye mx-2 my-2" : "fa fa-eye-slash mx-2 my-2"}  value={showPassword1}
+                    onClick={() =>
+                        setShowPassword1((prev) => !prev)
+                    }></i>
                 </div>
             </div>
         </div>
@@ -41,7 +48,11 @@ export default function ChangePassword(props) {
             <div className="col-xl-3 col-sm-6 col-lg-3">
                 <label htmlFor="inputName" className="form-label input-form-label">New Password<span className="asterisk">*</span></label>
                 <div className="d-flex">
-                    <input type="password" className="form-control" placeholder="Enter new password" name="newPassword" minLength={5} value={pass.newPassword} onChange={onChange}/>
+                    <input type={showPassword2 ? "text" : "password"} className="form-control" placeholder="Enter new password" name="newPassword" minLength={5} value={pass.newPassword} onChange={onChange}/>
+                    <i class={showPassword2? "fa-solid fa-eye mx-2 my-2" : "fa fa-eye-slash mx-2 my-2"}  value={showPassword2}
+                    onClick={() =>
+                        setShowPassword2((prev) => !prev)
+                    }></i>
                 </div>
             </div>
         </div>
@@ -49,7 +60,13 @@ export default function ChangePassword(props) {
             <div className="col-xl-3 col-sm-6 col-lg-3">
                 <label htmlFor="inputName" className="form-label input-form-label">Confirm Password<span className="asterisk">*</span></label>
                 <div className="d-flex">
-                    <input type="password" className="form-control" placeholder="Confirm password" name="confirmPassword" minLength={5} value={pass.confirmPassword} onChange={onChange}/>
+                    <input type={showPassword3 ? "text" : "password"} className="form-control" placeholder="Confirm password"
+                     name="confirmPassword" minLength={5} value={pass.confirmPassword} onChange={onChange}
+                     />
+                <i class={showPassword3? "fa-solid fa-eye mx-2 my-2" : "fa fa-eye-slash mx-2 my-2"}  value={showPassword3}
+                    onClick={() =>
+                        setShowPassword3((prev) => !prev)
+                    }></i>
                 </div>
             </div>
         </div>

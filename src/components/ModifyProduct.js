@@ -63,7 +63,7 @@ export default function ModifyProduct(props) {
       <h2> Product</h2>
         <label className="font-weight-600 font-17 my-2">Product Photo</label>
         <div className="display-flex mb-3 mt-2">
-        <img alt="preview" className="profileImg" src={product.image} width="100rem" length ="100rem"/>
+        <img alt="preview" className="profileImg" src={product.image} width="200rem" length ="200rem"/>
         </div><div className="font-weight-600 font-17 mt-4">Product Details</div><div className="card-text pt-3">
         <form><div className="row"><div className="col-xl-3 col-sm-6 col-lg-3 inputType">
         <label htmlFor="inputName" className="form-label input-form-label">Product Name<span className="asterisk">*</span></label>
@@ -90,7 +90,9 @@ export default function ModifyProduct(props) {
    <>
    <form onSubmit={handleClick}>
     <div className="row">
-    <img alt="preview" className="profileImg" src={productImage.myFile? productImage.myFile: product.image} width="100rem" length ="100rem"/>
+    <div className="display-flex mb-3 mt-2">
+    <img alt="preview" className="profileImg" src={productImage.myFile? productImage.myFile: product.image} width="200rem" length ="200rem"/>
+    </div>
     <label htmlFor="inputName" className="form-label input-form-label">Product Image<span className="asterisk">*</span></label>
     {props.option === "edit" ?
     <input
