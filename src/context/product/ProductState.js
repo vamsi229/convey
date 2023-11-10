@@ -69,8 +69,25 @@ const ProductState = (props)=>{
         }
     }
 
+    const updateRating = async (data) =>{
+        console.log("daaaaaa", data)
+        const response = await fetch(`${window.base_url}/products/update-rating`,{
+            method: 'POST',
+            headers: {"Content-Type":"application/json", "token": localStorage.getItem('token')},
+            body: JSON.stringify({"productId": data.productId, "rate": data.rate, "comments": data.comments})
+        })
+        const json = await response.json()
+        if(json.status){
+            props.showAlert(json.message, "success")
+        }
+        else{
+            props.showAlert(json.message, "danger")
+        }
+    }
+
     return (
-        <ProductContext.Provider value={{product, setProduct, fetchProducts, addProduct, updateProduct, deleteProduct}}>
+        <ProductContext.Provider value={{product, setProduct, fetchProducts, addProduct, updateProduct, deleteProduct,
+            updateRating}}>
             {props.children}
         </ProductContext.Provider>
     )

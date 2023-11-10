@@ -1,20 +1,19 @@
-import React, { useContext, useRef, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import productContext from '../context/product/ProductContext'
 import { useNavigate } from 'react-router-dom'
+
 
 export default function ModifyProduct(props) {
     const history = useNavigate();
     const pContext = useContext(productContext)
-    const {product, setProduct, addProduct, updateProduct, deleteProduct} = pContext
+    const {product, setProduct, addProduct, updateProduct} = pContext
 
-    const saveProduct = ()=>{
-      history("/products")
-    }
+
 
     const handleClick = (e) => {
       e.preventDefault()
       var image = productImage.myFile
-      if (productImage.myFile.length == 0){
+      if (productImage.myFile.length === 0){
         image = product.image
         }
      
@@ -57,6 +56,11 @@ export default function ModifyProduct(props) {
     history("/editProduct")
   }
 
+  const OnClickGiveRating = () => {
+    history("/rating", 
+    {state: {"productId": product.productId}})
+  
+  }
   return (
    <>{props.option === 'details'?
     <div className="card-body p-4">
@@ -66,10 +70,10 @@ export default function ModifyProduct(props) {
         <img alt="preview" className="profileImg" src={product.image} width="200rem" length ="200rem"/>
         </div><div className="font-weight-600 font-17 mt-4">Product Details</div><div className="card-text pt-3">
         <form><div className="row"><div className="col-xl-3 col-sm-6 col-lg-3 inputType">
-        <label htmlFor="inputName" className="form-label input-form-label">Product Name<span className="asterisk">*</span></label>
+        <label htmlFor="inputName" className="form-label input-form-label">Product Name</label>
         <div className="font-17 font-weight-bold">{product.name}</div></div>
         <div className="col-xl-3 col-sm-6 col-lg-3 inputType">
-        <label htmlFor="inputName" className="form-label input-form-label">Description<span className="asterisk">*</span></label>
+        <label htmlFor="inputName" className="form-label input-form-label">Description</label>
         <div className="font-17 font-weight-bold">{product.description}</div></div>
         <div className="col-xl-3 col-sm-6 col-lg-3 inputType">
         <label htmlFor="inputName" className="form-label input-form-label">Price</label>
@@ -83,8 +87,19 @@ export default function ModifyProduct(props) {
         </div><div className="col-xl-3 col-sm-6 col-lg-3 inputType">
         <label htmlFor="inputName" className="form-label input-form-label">Operating System</label>
         <div className="font-17 font-weight-bold">{product.operatingSystem}</div>
-        </div></div>
-        <button type="button" className="btn btn-primary save-button submit-or-cancel-btn ml-2 my-4" onClick={onEditClick}>
+        </div>
+        <div>
+        {product.aggregatedRating>0.5?<i class="fas fa-star"></i>:<i class="far fa-star"></i>}
+        {product.aggregatedRating>1.5?<i class="fas fa-star"></i>:<i class="far fa-star"></i>}
+        {product.aggregatedRating>2.5?<i class="fas fa-star"></i>:<i class="far fa-star"></i>}
+        {product.aggregatedRating>3.5?<i class="fas fa-star"></i>:<i class="far fa-star"></i>}
+        {product.aggregatedRating>4.5?<i class="fas fa-star"></i>:<i class="far fa-star"></i>}
+        <p className="ml-2">{product.aggregatedRating}</p>
+        </div>
+        </div>
+        <button type="button" className="btn btn-primary save-button submit-or-cancel-btn ml-2 my-4 mx-2" onClick={()=>{OnClickGiveRating()}}>
+          Give Rating</button>
+        <button type="button" className="btn btn-primary save-button submit-or-cancel-btn ml-2 my-4 mx-2" onClick={onEditClick}>
           Edit</button></form></div></div>
     : 
    <>

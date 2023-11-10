@@ -16,6 +16,7 @@ import TextUtil from './components/TextUtil';
 import Product from './components/Product';
 import ModifyProduct from './components/ModifyProduct';
 import ProductState from './context/product/ProductState';
+import StarRating from './components/StarRating';
 
 
 window.base_url = "http://localhost:8808/convey"
@@ -45,6 +46,9 @@ function App() {
             /> 
             <Route exact path="/editProduct"
               element={<ModifyProduct showAlert={showAlert} option={"edit"}/>}
+            />
+            <Route exact path="/rating"
+              element={<StarRating showAlert={showAlert} option={"edit"}/>}
             />
             <Route exact path="/addProduct"
               element={<ModifyProduct showAlert={showAlert} option={"add"}/>}

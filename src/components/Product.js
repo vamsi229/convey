@@ -25,7 +25,7 @@ export default function Product() {
 
   return (
     <>
-    <Link className="btn btn-primary mx-1 my-4" to="/addProduct" onClick={unsetDetails} role="button">+ New Product</Link>
+    <Link className="btn btn-primary mx-1 my-3" to="/addProduct" onClick={unsetDetails} role="button">+ New Product</Link>
         <h1 className="text-center" style={{ margin: '35px 0px' }}>Products</h1>
             <div className="container">
             <div className="row">
@@ -34,6 +34,7 @@ export default function Product() {
                         <ProductItem name={element.name} description={element.description} 
                         price={element.price} ram={element.ram} storage={element.storage} 
                         operatingSystem={element.operatingSystem} image={element.image} productId = {element.productId}
+                        aggregatedRating = {element.aggregatedRating}
                         />
                     </div>
                 })}
