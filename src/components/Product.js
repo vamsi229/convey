@@ -1,13 +1,11 @@
-import React, { useContext, useEffect, useLayoutEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import productContext from '../context/product/ProductContext'
 import { Link } from 'react-router-dom'
 import ProductItem from './ProductItem'
-// import userEvent from '@testing-library/user-event'
 
 export default function Product() {
   const pContext = useContext(productContext)
   const {fetchProducts, setProduct} = pContext
-  // const values = fetchProducts()
   const [values, setValues] = useState([])
 
   async function fetchData() {
@@ -31,10 +29,10 @@ export default function Product() {
             <div className="row">
                 {values.map((element) => {
                     return <div className="col-md-4" key={element.productId}>
-                        <ProductItem name={element.name} description={element.description} 
+                        <ProductItem name={element.name} description={element.description}
                         price={element.price} ram={element.ram} storage={element.storage} 
                         operatingSystem={element.operatingSystem} image={element.image} productId = {element.productId}
-                        aggregatedRating = {element.aggregatedRating}
+                        aggregatedRating = {element.aggregatedRating} count = {element.count}
                         />
                     </div>
                 })}

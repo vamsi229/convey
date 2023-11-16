@@ -37,7 +37,7 @@ export default function ChangePassword(props) {
                 <label htmlFor="existingPassword" className="form-label input-form-label">Current Password<span className="asterisk">*</span></label>
                 <div className="d-flex">
                     <input type={showPassword1 ? "text" : "password"} className="form-control" placeholder="Enter current password" name="password" value={pass.password} onChange={onChange} />
-                    <i class={showPassword1? "fa-solid fa-eye mx-2 my-2" : "fa fa-eye-slash mx-2 my-2"}  value={showPassword1}
+                    <i className={showPassword1? "fa-solid fa-eye mx-2 my-2" : "fa fa-eye-slash mx-2 my-2"}  value={showPassword1}
                     onClick={() =>
                         setShowPassword1((prev) => !prev)
                     }></i>
@@ -49,7 +49,7 @@ export default function ChangePassword(props) {
                 <label htmlFor="inputName" className="form-label input-form-label">New Password<span className="asterisk">*</span></label>
                 <div className="d-flex">
                     <input type={showPassword2 ? "text" : "password"} className="form-control" placeholder="Enter new password" name="newPassword" minLength={5} value={pass.newPassword} onChange={onChange}/>
-                    <i class={showPassword2? "fa-solid fa-eye mx-2 my-2" : "fa fa-eye-slash mx-2 my-2"}  value={showPassword2}
+                    <i className={showPassword2? "fa-solid fa-eye mx-2 my-2" : "fa fa-eye-slash mx-2 my-2"}  value={showPassword2}
                     onClick={() =>
                         setShowPassword2((prev) => !prev)
                     }></i>
@@ -63,7 +63,7 @@ export default function ChangePassword(props) {
                     <input type={showPassword3 ? "text" : "password"} className="form-control" placeholder="Confirm password"
                      name="confirmPassword" minLength={5} value={pass.confirmPassword} onChange={onChange}
                      />
-                <i class={showPassword3? "fa-solid fa-eye mx-2 my-2" : "fa fa-eye-slash mx-2 my-2"}  value={showPassword3}
+                <i className={showPassword3? "fa-solid fa-eye mx-2 my-2" : "fa fa-eye-slash mx-2 my-2"}  value={showPassword3}
                     onClick={() =>
                         setShowPassword3((prev) => !prev)
                     }></i>

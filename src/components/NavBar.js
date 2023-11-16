@@ -48,9 +48,9 @@ export default function NavBar() {
         <label className=" cursor-pointer"><div className=" user-text word-break">{userName}
         </div></label></span></div>
         {/* <li className="dropdown-item" onClick={handleLogout} role="button">{userName}</li> */}
-      <Link className={`dropdown-item ${location.pathname==="/userProfile"? "active": ""}`} to="/userProfile" role="button"><i class="fas fa-user-edit"></i> Profile</Link>
-      <Link className={`dropdown-item ${location.pathname==="/changePassword"? "active": ""}`} to="/changePassword" role="button"><i class="fa fa-key" aria-hidden="true"></i> Change Password</Link>
-      <li className="dropdown-item" onClick={handleLogout} role="button"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</li>
+      <Link className={`dropdown-item ${location.pathname==="/userProfile"? "active": ""}`} to="/userProfile" role="button"><i className="fas fa-user-edit"></i> Profile</Link>
+      <Link className={`dropdown-item ${location.pathname==="/changePassword"? "active": ""}`} to="/changePassword" role="button"><i className="fa fa-key" aria-hidden="true"></i> Change Password</Link>
+      <li className="dropdown-item" onClick={handleLogout} role="button"><i className="fa fa-sign-out" aria-hidden="true"></i> Logout</li>
       </ul>
     </div>
         }

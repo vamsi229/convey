@@ -1,14 +1,18 @@
 import React, { useContext, useState } from 'react'
 import productContext from '../context/product/ProductContext'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { useEffect } from 'react';
 
 
 export default function ModifyProduct(props) {
     const history = useNavigate();
     const pContext = useContext(productContext)
     const {product, setProduct, addProduct, updateProduct} = pContext
-
-
+    const location = useLocation();
+    useEffect(()=>{
+      if(!product.name && location.pathname != "/addProduct"){
+      history("/products")}
+    },[])
 
     const handleClick = (e) => {
       e.preventDefault()
@@ -77,7 +81,7 @@ export default function ModifyProduct(props) {
         <div className="font-17 font-weight-bold">{product.description}</div></div>
         <div className="col-xl-3 col-sm-6 col-lg-3 inputType">
         <label htmlFor="inputName" className="form-label input-form-label">Price</label>
-        <div className="font-17 font-weight-bold">{product.price}</div>
+        <div className="font-17 font-weight-bold">{product.price?.toLocaleString("en-US")}</div>
         </div><div className="col-xl-3 col-sm-6 col-lg-3 inputType">
         <label htmlFor="inputName" className="form-label input-form-label">Ram</label>
         <div className="font-17 font-weight-bold">{product.ram}</div>
@@ -89,12 +93,12 @@ export default function ModifyProduct(props) {
         <div className="font-17 font-weight-bold">{product.operatingSystem}</div>
         </div>
         <div>
-        {product.aggregatedRating>0.5?<i class="fas fa-star"></i>:<i class="far fa-star"></i>}
-        {product.aggregatedRating>1.5?<i class="fas fa-star"></i>:<i class="far fa-star"></i>}
-        {product.aggregatedRating>2.5?<i class="fas fa-star"></i>:<i class="far fa-star"></i>}
-        {product.aggregatedRating>3.5?<i class="fas fa-star"></i>:<i class="far fa-star"></i>}
-        {product.aggregatedRating>4.5?<i class="fas fa-star"></i>:<i class="far fa-star"></i>}
-        <p className="ml-2">{product.aggregatedRating}</p>
+        {product.aggregatedRating>0.5?<i className="fas fa-star"></i>:<i className="far fa-star"></i>}
+        {product.aggregatedRating>1.5?<i className="fas fa-star"></i>:<i className="far fa-star"></i>}
+        {product.aggregatedRating>2.5?<i className="fas fa-star"></i>:<i className="far fa-star"></i>}
+        {product.aggregatedRating>3.5?<i className="fas fa-star"></i>:<i className="far fa-star"></i>}
+        {product.aggregatedRating>4.5?<i className="fas fa-star"></i>:<i className="far fa-star"></i>}
+        <p className="ml-2">{`${product.aggregatedRating} ( ${product.count})`}</p> 
         </div>
         </div>
         <button type="button" className="btn btn-primary save-button submit-or-cancel-btn ml-2 my-4 mx-2" onClick={()=>{OnClickGiveRating()}}>
