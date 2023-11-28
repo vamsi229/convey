@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import ProductContext from "./ProductContext";
-import { json } from "react-router-dom";
 
 const ProductState = (props)=>{
     const productInitial = {}
@@ -70,7 +69,7 @@ const ProductState = (props)=>{
     }
 
     const updateRating = async (data) =>{
-        console.log("daaaaaa", data)
+       
         const response = await fetch(`${window.base_url}/products/update-rating`,{
             method: 'POST',
             headers: {"Content-Type":"application/json", "token": localStorage.getItem('token')},

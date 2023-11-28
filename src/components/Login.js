@@ -1,6 +1,5 @@
-import React, { useState, useContext } from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { jwtDecode } from "jwt-decode";
 
 export default function Login(props) {
   const [credentials, setCredentials] = useState({email: "", password: ""}) 

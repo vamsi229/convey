@@ -11,12 +11,12 @@ import UserProfile from './components/UserProfile';
 import UserState from './context/user/UserState';
 import EditProfile from './components/editUser';
 import ChangePassword from './components/ChangePassword';
-// import Chatting from './components/Chatting';
 import TextUtil from './components/TextUtil';
 import Product from './components/Product';
 import ModifyProduct from './components/ModifyProduct';
 import ProductState from './context/product/ProductState';
 import StarRating from './components/StarRating';
+import CustomerSupport from './components/CustomerSupport';
 
 
 window.base_url = "http://localhost:8808/convey"
@@ -43,6 +43,9 @@ function App() {
           <Routes>
             <Route exact path="/"
               element={<Home showAlert={showAlert}/>}
+            /> 
+            <Route exact path="/support"
+              element={<CustomerSupport showAlert={showAlert}/>}
             /> 
             <Route exact path="/editProduct"
               element={<ModifyProduct showAlert={showAlert} option={"edit"}/>}

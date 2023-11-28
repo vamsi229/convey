@@ -24,7 +24,6 @@ export default function StarRating() {
 
     const onChangehandled = (e)=>{
       setComments({...comments, [e.target.name]: e.target.value.toString()})
-      // console.log("sasa", comments)
     }
     const onSubmit = (e) => {
       e.preventDefault();

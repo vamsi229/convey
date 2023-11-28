@@ -10,7 +10,7 @@ export default function ModifyProduct(props) {
     const {product, setProduct, addProduct, updateProduct} = pContext
     const location = useLocation();
     useEffect(()=>{
-      if(!product.name && location.pathname != "/addProduct"){
+      if(!product.name && location.pathname !== "/addProduct"){
       history("/products")}
     },[])
 
